@@ -15,6 +15,21 @@ namespace RestControllerPairProgramming.Controllers
     public class MusicRecordsController : ControllerBase
     {
         private readonly IManageMusicRecords mgr = new ManageMusicRecords();
+
+        public MusicRecordsController(MusicRecordsContext context = null)
+        {
+            if (context == null)
+            {
+                mgr = new ManageMusicRecords();
+            }
+            else
+            {
+                mgr = new ManageMusicRecordsDB(context);
+
+            }
+
+
+        }
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<MusicRecords> Get()
@@ -27,27 +42,6 @@ namespace RestControllerPairProgramming.Controllers
         public MusicRecords Get(int id)
         {
             return mgr.Get(id);
-        }
-
-        [HttpGet]
-        [Route(("Title/{substring}"))]
-        public IEnumerable<MusicRecords> GetTitleFromsubstring(string sub)
-        {
-            return mgr.GetTitleFromSubstring(sub);
-        }
-
-        [HttpGet]
-        [Route(("Artist/{substring}"))]
-        public IEnumerable<MusicRecords> GetArtistFromsubstring(string sub)
-        {
-            return mgr.GetArtistFromSubstring(sub);
-        }
-
-        [HttpGet]
-        [Route(("Genre/{substring}"))]
-        public IEnumerable<MusicRecords> GetGenreFromsubstring([FromQuery] string sub)
-        {
-            return mgr.GetGenreFromSubstring(sub);
         }
 
         // POST api/<ValuesController>

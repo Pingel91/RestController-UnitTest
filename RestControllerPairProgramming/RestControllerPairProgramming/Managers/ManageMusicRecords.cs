@@ -19,24 +19,7 @@ namespace RestControllerPairProgramming.Managers
         {
             return new List<MusicRecords>(musicRecordsList);
         }
-
-        public IEnumerable<MusicRecords> GetTitleFromSubstring(string substring)
-        {
-            return musicRecordsList.Where(i => i.Title.Contains(substring));
-        }
-
-        public IEnumerable<MusicRecords> GetArtistFromSubstring(string substring)
-        {
-            return musicRecordsList.Where(i => i.Artist.Contains(substring));
-
-        }
-
-        public IEnumerable<MusicRecords> GetGenreFromSubstring(string substring)
-        {
-            return musicRecordsList.Where(i => i.Genre.Contains(substring));
-
-        }
-
+        
         public MusicRecords Get(int id)
         {
             if (musicRecordsList.Exists(i => i.Id == id))

@@ -8,44 +8,55 @@ namespace RestControllerPairProgramming.Managers
 {
     public class ManageMusicRecordsDB : IManageMusicRecords
     {
-        public IEnumerable<MusicRecords> GetGenreFromSubstring(string substring)
+        private readonly MusicRecordsContext _context;
+
+        public ManageMusicRecordsDB(MusicRecordsContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+
         }
 
-        public bool Create(MusicRecords value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public MusicRecords Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<MusicRecords> Get()
         {
-            throw new NotImplementedException();
+            return _context.MusicRecords;
         }
 
         public MusicRecords Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.MusicRecords.Find(id);
         }
 
-        public IEnumerable<MusicRecords> GetTitleFromSubstring(string substring)
+        public bool Create(MusicRecords value)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<MusicRecords> GetArtistFromSubstring(string substring)
-        {
-            throw new NotImplementedException();
+            _context.MusicRecords.Add(value);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool Update(int id, MusicRecords value)
         {
-            throw new NotImplementedException();
+            MusicRecords musicRecords = Get(id);
+            if (musicRecords != null)
+            {
+                musicRecords.Id = value.Id;
+                musicRecords.Title = value.Title;
+                musicRecords.Artist = value.Artist;
+                musicRecords.Genre = value.Genre;
+                musicRecords.Duration = value.Duration;
+                musicRecords.PublicationYear = value.PublicationYear;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public MusicRecords Delete(int id)
+        {
+            MusicRecords musicRecords = Get(id);
+            _context.MusicRecords.Remove(musicRecords);
+            return musicRecords;
         }
     }
 }
