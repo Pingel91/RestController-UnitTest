@@ -29,6 +29,27 @@ namespace RestControllerPairProgramming.Controllers
             return mgr.Get(id);
         }
 
+        [HttpGet]
+        [Route(("Title/{substring}"))]
+        public IEnumerable<MusicRecords> GetTitleFromsubstring(string sub)
+        {
+            return mgr.GetTitleFromSubstring(sub);
+        }
+
+        [HttpGet]
+        [Route(("Artist/{substring}"))]
+        public IEnumerable<MusicRecords> GetArtistFromsubstring(string sub)
+        {
+            return mgr.GetArtistFromSubstring(sub);
+        }
+
+        [HttpGet]
+        [Route(("Genre/{substring}"))]
+        public IEnumerable<MusicRecords> GetGenreFromsubstring([FromQuery] string sub)
+        {
+            return mgr.GetGenreFromSubstring(sub);
+        }
+
         // POST api/<ValuesController>
         [HttpPost]
         public bool Post([FromBody] MusicRecords value)

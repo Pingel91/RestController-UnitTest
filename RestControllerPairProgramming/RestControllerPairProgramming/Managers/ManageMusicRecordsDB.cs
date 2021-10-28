@@ -8,6 +8,11 @@ namespace RestControllerPairProgramming.Managers
 {
     public class ManageMusicRecordsDB : IManageMusicRecords
     {
+        public IEnumerable<MusicRecords> GetGenreFromSubstring(string substring)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Create(MusicRecords value)
         {
             throw new NotImplementedException();
@@ -24,6 +29,16 @@ namespace RestControllerPairProgramming.Managers
         }
 
         public MusicRecords Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<MusicRecords> GetTitleFromSubstring(string substring)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<MusicRecords> GetArtistFromSubstring(string substring)
         {
             throw new NotImplementedException();
         }

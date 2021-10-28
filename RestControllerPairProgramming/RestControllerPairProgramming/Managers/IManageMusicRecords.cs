@@ -12,6 +12,11 @@ namespace RestControllerPairProgramming.Managers
     {
         IEnumerable<MusicRecords> Get();
         MusicRecords Get(int id);
+        IEnumerable<MusicRecords> GetTitleFromSubstring(string substring);
+        IEnumerable<MusicRecords> GetArtistFromSubstring(string substring);
+
+        IEnumerable<MusicRecords> GetGenreFromSubstring(string substring);
+
         bool Create(MusicRecords value);
         bool Update(int id, MusicRecords value);
         MusicRecords Delete(int id);
